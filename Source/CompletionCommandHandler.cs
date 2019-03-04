@@ -79,7 +79,8 @@ namespace VSIXProject1
             //check for a commit character
             if (nCmdID == (uint)VSConstants.VSStd2KCmdID.RETURN
                 || nCmdID == (uint)VSConstants.VSStd2KCmdID.TAB
-                || (char.IsWhiteSpace(typedChar) || char.IsPunctuation(typedChar)))
+                || (char.IsWhiteSpace(typedChar) //|| char.IsPunctuation(typedChar)
+                ))
             {
                 //check for a selection
                 if (m_session != null && !m_session.IsDismissed)
@@ -88,6 +89,7 @@ namespace VSIXProject1
                     if (m_session.SelectedCompletionSet.SelectionStatus.IsSelected)
                     {
                         m_session.Commit();
+                        
                         //also, don't add the character to the buffer
                         return VSConstants.S_OK;
                     }

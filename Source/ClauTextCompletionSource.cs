@@ -21,10 +21,26 @@ namespace VSIXProject1
             _textBuffer = textBuffer;
         }
 
+        /// <summary>
+        /// todo, keyword? list!
+        /// </summary>
         private static string[] _clautextKeyword = new[] {
-            "Main", "Event", "id", "$print", "$return",
-            // todo
+            // special keyword
+            "Main", "Event", "id", "TRUE", "FALSE",
+            // function Group 1
+            "$call", "$make", "$call_by_data",
+            "$_getch",
+            "$print", "$return", "$local", "$parameter",
+            "$if", "$else", "$while",
+            "$iterate",
+            "$load", "$load_only_data",
+            "$save_data_only",
+            // function Group 2
+            "$AND", "$OR", "$concat",
+            // function Group 3 - now not used?
+            "AND", "OR", 
         };
+
         private ITrackingSpan FindTokenSpanAtPosition(ITrackingPoint point, ICompletionSession session)
         {
             SnapshotPoint currentPoint = (session.TextView.Caret.Position.BufferPosition) - 1;
